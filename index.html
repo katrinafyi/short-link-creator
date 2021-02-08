@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.3/tailwind.min.css" integrity="sha512-wl80ucxCRpLkfaCnbM88y4AxnutbGk327762eM9E/rRTvY/ZGAHWMZrYUq66VQBYMIYDFpDdJAOGSLyIPHZ2IQ==" crossorigin="anonymous" />
+  <title>Short Link Creator</title>
+</head>
+<body class="flex justify-center">
+  <form id="form" class="max-w-sm">
+    <div class="my-10 grid gap-3">
+      <h1 class="text-xl font-semibold">New Short Link</h1>
+      <div>
+        <label class="flex flex-col">
+          Domain
+          <input id="domain" type="text" class="mt-1 border-gray-500 p-2 border rounded-md outline-none" required>
+        </label>
+      </div>
+      <div>
+        <label class="flex flex-col">
+          Short Code
+          <input id="short" type="text" class="mt-1 border-gray-500 p-2 border rounded-md outline-none" required>
+        </label>
+      </div>
+      <div>
+        <label class="flex flex-col">
+          Long URL
+          <input id="url" type="url" class="mt-1 border-gray-500 p-2 border rounded-md outline-none" required>
+        </label>
+      </div>
+      <div class="my-2">
+        <button id="button" class="w-full border border-gray-500 bg-gray-100 hover:bg-gray-200 p-2 rounded-md" type="submit">Create</button>
+      </div>
+      <hr/>
+
+      <div id="result" class="hidden">
+        <div id="success" class="hidden">
+          <div class="text-green-700 font-bold">Link created!</div>
+          <div class="flex items-center">
+            <a id="newUrl" class="flex-grow underline" href="https://a">https://a</a>
+            <button id="copy" class="border border-gray-500 bg-gray-100 hover:bg-gray-200 p-1 rounded-sm" type="button">Copy</button>
+          </div>
+        </div>
+        <div id="failure" class="hidden">
+          <div class="text-red-700 font-bold">Failed to create link!</div>
+          <textarea id="error" class="w-full resize-none overflow-hidden h-auto font-mono text-sm">
+            fas
+          </textarea>
+        </div>
+        <hr class="mt-3"/>
+      </div>
+
+      <div class="mt-1 text-sm grid gap-2">
+        <h2 class="font-semibold text-base">Configuration</h2>
+
+        <div>
+          <label class="flex flex-col">
+            short.io API Key
+            <input id="key" type="text" autocomplete="off" class="mt-1 border-gray-500 p-1 border rounded-md outline-none" required>
+          </label>
+          <p>Use the Public Key from the <a href="https://app.short.io/settings/integrations/api-key" class="underline" target="_blank">Integrations & API</a> page.</p>
+        </div>
+
+        <div>
+          This website's code is available on GitHub:
+          <a href="https://github.com/kentonlam/short-link-creator" class="underline whitespace-nowrap">kentonlam/short-link-creator</a>.
+        </div>
+      </div>
+    </div>
+  </form>
+  <script src="./main.js"></script>
+</body>
+</html>
