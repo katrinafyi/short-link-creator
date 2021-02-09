@@ -83,9 +83,6 @@ const failureResult = $('#failure');
 const resultContainer = $('#result');
 
 
-// persist api key
-persistInput(keyInput, 'api-key');
-
 // attach submit listener to create link
 $('#form').addEventListener('submit', (ev) => {
   const [domain, short, url, key] = [
@@ -124,9 +121,26 @@ copyButton.addEventListener('click', () => {
 
 // extract default domain and short code from URL
 const params = new URLSearchParams(window.location.search);
-domainInput.value = params.get('d') || '';
+const d = params.get('d') || '';
+domainInput.value = d;
 shortInput.value = params.get('s') || '';
 
-if (shortInput.value) {
+// show domain missing text and disable fields
+if (!d) {
+  show($('#domainMissing'));
+  shortInput.disabled = true;
+  urlInput.disabled = true;
+  keyInput.disabled = true;
+}
+
+// display domain above key input and persist api key
+if (d) {
+  $('#domainText').textContent = d;
+  persistInput(keyInput, 'api-key-' + d);
+}
+
+if (!shortInput.value) {
+  shortInput.focus();
+} else {
   urlInput.focus();
 }
